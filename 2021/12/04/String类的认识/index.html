@@ -1,0 +1,753 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>String类的认识 | 余音的博客</title><meta name="keywords" content="博客，余音"><meta name="author" content="余音"><meta name="copyright" content="余音"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="创建String类常见的构造String的方法： 1234567&#x2F;&#x2F;方法一String str&#x3D;&quot;Hello&quot;;&#x2F;&#x2F;方法二String str &#x3D;new String (&quot;Hello&quot;);&#x2F;&#x2F;方法三char[] ch&#x3D;&amp;#123;&amp;#x27;H&amp;#x27;,&amp;#x27;e&amp;#x27;.&amp;#x27;l&amp;#x27;,&amp;#x27;l&amp;#x27;,&amp;#x27;o&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String类的认识">
+<meta property="og:url" content="http://example.com/2021/12/04/String%E7%B1%BB%E7%9A%84%E8%AE%A4%E8%AF%86/index.html">
+<meta property="og:site_name" content="余音的博客">
+<meta property="og:description" content="创建String类常见的构造String的方法： 1234567&#x2F;&#x2F;方法一String str&#x3D;&quot;Hello&quot;;&#x2F;&#x2F;方法二String str &#x3D;new String (&quot;Hello&quot;);&#x2F;&#x2F;方法三char[] ch&#x3D;&amp;#123;&amp;#x27;H&amp;#x27;,&amp;#x27;e&amp;#x27;.&amp;#x27;l&amp;#x27;,&amp;#x27;l&amp;#x27;,&amp;#x27;o&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042090.jfif">
+<meta property="article:published_time" content="2021-12-04T02:06:00.000Z">
+<meta property="article:modified_time" content="2021-12-04T02:06:47.765Z">
+<meta property="article:author" content="余音">
+<meta property="article:tag" content="博客，余音">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042090.jfif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/12/04/String%E7%B1%BB%E7%9A%84%E8%AE%A4%E8%AF%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'String类的认识',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-04 10:06:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/constown/HexoCustomFile@0.0.4/dist/css/custom.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111251736783.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042090.jfif')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">余音的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">String类的认识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-04T02:06:00.000Z" title="发表于 2021-12-04 10:06:00">2021-12-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-04T02:06:47.765Z" title="更新于 2021-12-04 10:06:47">2021-12-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="String类的认识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="创建String类"><a href="#创建String类" class="headerlink" title="创建String类"></a>创建String类</h1><p>常见的构造String的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一</span></span><br><span class="line">String str=<span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="comment">//方法二</span></span><br><span class="line">String str =<span class="keyword">new</span> String (<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"><span class="comment">//方法三</span></span><br><span class="line"><span class="keyword">char</span>[] ch=&#123;<span class="string">&#x27;H&#x27;</span>,<span class="string">&#x27;e&#x27;</span>.<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">String str=<span class="keyword">new</span> String (ch);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项</strong>:</p>
+<blockquote>
+<p>“hello” 这样的字符串字面值常量, 类型也是 String.</p>
+<p>String 也是<strong>引用类型</strong>. String str = “Hello”; 这样的代码内存布局如下</p>
+</blockquote>
+<p><img src="C:/Users/78581/AppData/Roaming/Typora/typora-user-images/image-20211121172912508.png" alt="image-20211121172912508"></p>
+<p>由于 String 是引用类型, 因此对于以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">String str2 = str1;</span><br></pre></td></tr></table></figure>
+
+<p>内存布局如图</p>
+<p><img src="C:/Users/78581/AppData/Roaming/Typora/typora-user-images/image-20211122121452707.png" alt="image-20211122121452707"></p>
+<p>那么有同学可能会说, 是不是修改 str1 , str2 也会随之变化呢?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line"></span><br><span class="line">System.out.println(str2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"></span><br><span class="line">Hello</span><br></pre></td></tr></table></figure>
+
+<p>我们发现, “修改” str1 之后, str2 也没发生变化, 还是 hello?</p>
+<p>事实上, str1 = “world” 这样的代码并不算 “修改” 字符串, 而是让 str1 这个引用指向了一个新的 String 对象.</p>
+<h1 id="字符串比较相等"><a href="#字符串比较相等" class="headerlink" title="字符串比较相等"></a>字符串比较相等</h1><p>如果现在有两个int型变量，判断其相等可以使用 == 完成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">10</span> ;</span><br><span class="line"><span class="keyword">int</span> y = <span class="number">10</span> ;</span><br><span class="line">System.out.println(x == y); </span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果说现在在String类对象上使用 == ？</p>
+<p><strong>代码1</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">String str2 = <span class="string">&quot;Hello&quot;</span>; </span><br><span class="line"></span><br><span class="line">System.out.println(str1 == str2); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">true</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<p>看起来貌似没啥问题, 再换个代码试试, 发现情况不太妙.</p>
+<p><strong>代码2</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> String(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">System.out.println(str1 == str2);</span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+
+<p>我们来分析两种创建 String 方式的差异.</p>
+<p><strong>代码1内存布局</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/image-20211122121452707.png" alt="image-20211122121452707"></p>
+<p>我们发现, str1 和 str2 是指向同一个对象的. 此时如 “Hello” 这样的字符串常量是在 <strong>字符串常量池</strong> 中.</p>
+<blockquote>
+<p>关于字符串常量池</p>
+<p>如 “Hello” 这样的字符串字面值常量, 也是需要一定的内存空间来存储的. 这样的常量具有一个特点, 就是不需要</p>
+<p>修改(常量嘛). 所以如果代码中有多个地方引用都需要使用 “Hello” 的话, 就直接引用到常量池的这个位置就行</p>
+<p>了, 而没必要把 “Hello” 在内存中存储两次.</p>
+</blockquote>
+<p><strong>代码2内存布局</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/image-20211122122049827.png" alt="image-20211122122049827"></p>
+<p>通过 String str1 = new String(“Hello”); 这样的方式创建的 String 对象相当于再堆上另外开辟了空间来存储</p>
+<p>“Hello” 的内容, 也就是内存中存在两份 “Hello”.</p>
+<p><strong>String</strong> <strong>使用</strong> <strong>==</strong> <strong>比较并不是在比较字符串内容</strong><strong>,</strong> <strong>而是比较两个引用是否是指向同一个对象</strong>.</p>
+<p><strong>关于对象的比较</strong></p>
+<blockquote>
+<p>面向对象编程语言中, 涉及到对象的比较, 有三种不同的方式, 比较身份, 比较值, 比较类型.</p>
+<p>在大部分编程语言中 == 是用来比较比较值的. 但是 Java 中的 == 是用来比较身份的.</p>
+<p>如何理解比较值和比较身份呢?</p>
+<p>可以想象一个场景, 现在取快递, 都有包裹储物柜. 上面有很多的格子. 每个格子里面都放着东西.</p>
+<p>例如, “第二行, 左数第五列” 这个柜子和 “第二行, 右数第二列” 这个柜子是同一个柜子, 就是 <strong>身份相同</strong>. 如果身份</p>
+<p>相同, 那么里面放的东西一定也相同 (值一定也相同).</p>
+<p>例如, “第一行, 左数第一列” 这个柜子和 “第一行, 左数第二列” 这两个柜子不是同一个柜子, 但是柜子打开后发现</p>
+<p>里面放着的是完全一模一样的两双鞋子. 这个时候就是 <strong>值相同</strong></p>
+</blockquote>
+<p>Java 中要想比较字符串的内容, 必须采用String类提供的equals方法.</p>
+<p><strong>equals</strong> <strong>使用注意事项</strong></p>
+<p>现在需要比较 str 和 “Hello” 两个字符串是否相等, 我们该如何来写呢?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> String(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(str1.equals(str2));</span><br><span class="line"></span><br><span class="line"><span class="comment">// System.out.println(str2.equals(str1)); // 或者这样写也行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>equals 使用注意事项</strong></p>
+<p>现在需要比较 str 和 “Hello” 两个字符串是否相等, 我们该如何来写呢?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="keyword">new</span> String(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"><span class="comment">// 方式一</span></span><br><span class="line">System.out.println(str.equals(<span class="string">&quot;Hello&quot;</span>));</span><br><span class="line"><span class="comment">// 方式二</span></span><br><span class="line">System.out.println(<span class="string">&quot;Hello&quot;</span>.equals(str));</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中, 哪种方式更好呢?</p>
+<p>我们更推荐使用 “方式二”. 一旦 str 是 null, 方式一的代码会抛出异常, 而方式二不会</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">// 方式一</span></span><br><span class="line">System.out.println(str.equals(<span class="string">&quot;Hello&quot;</span>));  <span class="comment">// 执行结果 抛出 java.lang.NullPointerException 异 常</span></span><br><span class="line"><span class="comment">// 方式二</span></span><br><span class="line">System.out.println(<span class="string">&quot;Hello&quot;</span>.equals(str));	<span class="comment">//执行结果 false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项:</strong> “Hello” 这样的字面值常量, 本质上也是一个 String 对象, 完全可以使用 equals 等 String 对象的方法</p>
+<blockquote>
+<p>因为引用类型变量存储的是地址，所以“=”比较的是两个引用变量的地址是否相同，而不是比较内容</p>
+<p>String重写的equals方法比较的就是变量中的每一个具体值</p>
+</blockquote>
+<h1 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a><strong>字符串常量池</strong></h1><p>在上面的例子中, String类的两种实例化操作, 直接赋值和 new 一个新的 String</p>
+<p><strong>a)</strong> <strong>直接赋值</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;hello&quot;</span> ;</span><br><span class="line">String str2 = <span class="string">&quot;hello&quot;</span> ; </span><br><span class="line">String str3 = <span class="string">&quot;hello&quot;</span> ; </span><br><span class="line">System.out.println(str1 == str2); <span class="comment">// true</span></span><br><span class="line">System.out.println(str1 == str3); <span class="comment">// true</span></span><br><span class="line">System.out.println(str2 == str3); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>为什么现在并没有开辟新的堆内存空间呢？</p>
+<p>String类的设计使用了<strong>共享设计模式</strong></p>
+<p><strong>在JVM底层实际上会自动维护一个对象池（字符串常量池)</strong></p>
+<ol>
+<li>如果现在采用了直接赋值的模式进行String类的对象实例化操作，那么该实例化对象（字符串内容）将自动保存</li>
+</ol>
+<p>到这个对象池之中.</p>
+<ol start="2">
+<li><p>如果下次继续使用直接赋值的模式声明String类对象，此时对象池之中如若有指定内容，将直接进行引用</p>
+</li>
+<li><p>如若没有，则开辟新的字符串对象而后将其保存在对象池之中以供下次使用</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>理解</strong> <strong>“<strong><strong>池</strong></strong>“ (pool)</strong></p>
+<p>“池” 是编程中的一种常见的, 重要的提升效率的方式, 我们会在未来的学习中遇到各种 “内存池”, “线程池”, “数据</p>
+<p>库连接池” ….</p>
+<p>然而池这样的概念不是计算机独有, 也是来自于生活中.</p>
+</blockquote>
+<p><strong>b)</strong> <strong>采用构造方法</strong></p>
+<p>类对象使用构造方法实例化是标准做法。分析如下程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="keyword">new</span> String(<span class="string">&quot;hello&quot;</span>) ;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/image-20211122123306272.png" alt="image-20211122123306272"></p>
+<p>这样的做法有两个缺点:</p>
+<ol>
+<li>如果使用String构造方法就会开辟两块堆内存空间，并且其中一块堆内存将成为垃圾空间(字符串常量 “hello” 也</li>
+</ol>
+<p>是一个匿名对象, 用了一次之后就不再使用了, 就成为垃圾空间, 会被 JVM 自动回收掉).</p>
+<ol start="2">
+<li>字符串共享问题. 同一个字符串可能会被存储多次, 比较浪费空间</li>
+</ol>
+<p>我们可以使用 String 的 intern 方法来手动把 String 对象加入到字符串常量池中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该字符串常量并没有保存在对象池之中</span></span><br><span class="line">String str1 = <span class="keyword">new</span> String(<span class="string">&quot;hello&quot;</span>) ; </span><br><span class="line">String str2 = <span class="string">&quot;hello&quot;</span> ; </span><br><span class="line">System.out.println(str1 == str2); </span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="keyword">false</span></span><br><span class="line">    </span><br><span class="line">String str1 = <span class="keyword">new</span> String(<span class="string">&quot;hello&quot;</span>).intern() ; </span><br><span class="line">String str2 = <span class="string">&quot;hello&quot;</span> ; </span><br><span class="line">System.out.println(str1 == str2); </span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>面试题：请解释String类中两种对象实例化的区别</strong></p>
+<ol>
+<li><p>直接赋值：只会开辟一块堆内存空间，并且该字符串对象可以自动保存在对象池中以供下次使用。</p>
+</li>
+<li><p>构造方法：会开辟两块堆内存空间，不会自动保存在对象池中，可以使用intern()方法手工入池。</p>
+</li>
+</ol>
+</blockquote>
+<p>综上, 我们一般采取直接赋值的方式创建 String 对象</p>
+<h1 id="理解字符串的不可变"><a href="#理解字符串的不可变" class="headerlink" title="理解字符串的不可变"></a>理解字符串的不可变</h1><p>字符串是一种不可变对象. 它的内容不可改变.</p>
+<p>String 类的内部实现也是基于 char[] 来实现的, 但是 String 类并没有提供 set 方法之类的来修改内部的字符数组.</p>
+<p>感受下形如这样的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;hello&quot;</span> ; </span><br><span class="line">str = str + <span class="string">&quot; world&quot;</span> ; </span><br><span class="line">str += <span class="string">&quot;!!!&quot;</span> ; </span><br><span class="line">System.out.println(str); </span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line">hello world!!!</span><br></pre></td></tr></table></figure>
+
+<p>形如 += 这样的操作, 表面上好像是修改了字符串, 其实不是. 内存变化如下:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/image-20211122124550762.png" alt="image-20211122124550762"></p>
+<h1 id="字符、字节与字符串"><a href="#字符、字节与字符串" class="headerlink" title="字符、字节与字符串"></a>字符、字节与字符串</h1><h2 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h2><table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public String(char[] ch)</td>
+<td align="center">构造</td>
+<td align="center">将字符数组中所有的内容变成字符串</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public String(char[] ,int offest,int count)</td>
+<td align="center">构造</td>
+<td align="center">将部分字符数组中的内容变成字符串</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">public char charAt(int index)</td>
+<td align="center">普通</td>
+<td align="center">取得指定索引位置的字符，索引从0开始</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">public char[] toCharArray()</td>
+<td align="center">普通</td>
+<td align="center">将字符串变为字符数组返回</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例</strong>: 获取指定位置的字符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;hello&quot;</span> ;  </span><br><span class="line">System.out.println(str.charAt(<span class="number">0</span>));  <span class="comment">// 下标从 0 开始// 执行结果</span></span><br><span class="line">h </span><br><span class="line">System.out.println(str.charAt(<span class="number">10</span>)); </span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line">产生 StringIndexOutOfBoundsException 异常</span><br></pre></td></tr></table></figure>
+
+<p>代码示例: 字符串与字符数组的转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;helloworld&quot;</span> ; </span><br><span class="line"><span class="comment">// 将字符串变为字符数组</span></span><br><span class="line"><span class="keyword">char</span>[] data = str.toCharArray() ; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123; </span><br><span class="line"> System.out.print(data[i]+<span class="string">&quot; &quot;</span>); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 字符数组转为字符串</span></span><br><span class="line">System.out.println(<span class="keyword">new</span> String(data)); <span class="comment">// 全部转换</span></span><br><span class="line">System.out.println(<span class="keyword">new</span> String(data,<span class="number">5</span>,<span class="number">5</span>)); <span class="comment">// 部分转换</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>代码示例</strong><strong>:</strong> 给定字符串一个字符串, 判断其是否全部由数字所组成.</p>
+<p>思路: 将字符串变为字符数组而后判断每一位字符是否是” 0 “~”‘9’”之间的内容，如果是则为数字.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">     String str = <span class="string">&quot;1a23456&quot;</span> ; </span><br><span class="line">     System.out.println(isNumber(str)? <span class="string">&quot;字符串由数字所组成！&quot;</span> : <span class="string">&quot;字符串中有非数字成员！&quot;</span>);</span><br><span class="line"> &#125; </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String str)</span> </span>&#123; </span><br><span class="line"> 	<span class="keyword">char</span>[] data = str.toCharArray() ; </span><br><span class="line"> 	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123; </span><br><span class="line"> 		<span class="keyword">if</span> (data[i]&lt;<span class="string">&#x27;0&#x27;</span> || data[i]&gt;<span class="string">&#x27;9&#x27;</span>) &#123; </span><br><span class="line"> 		<span class="keyword">return</span> <span class="keyword">false</span> ; </span><br><span class="line"> 		&#125; </span><br><span class="line"> 	&#125; </span><br><span class="line"> 	<span class="keyword">return</span> <span class="keyword">true</span> ; </span><br><span class="line"> &#125;	</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="字节和字符串"><a href="#字节和字符串" class="headerlink" title="字节和字符串"></a>字节和字符串</h2><p>字节常用于数据传输以及编码转换的处理之中，String 也能方便的和 byte[] 相互转换</p>
+<table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public String(byte bytes[])</td>
+<td align="center">构造</td>
+<td align="center">将字符数组变为字符串</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public String(bute bytes[],int offset,int length)</td>
+<td align="center">构造</td>
+<td align="center">将部分字节数组中的内容变为字符串</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">public byte[] getBytes()</td>
+<td align="center">普通</td>
+<td align="center">将字符串一字符数组的形式返回</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">public byte[] getBytes(String charsetName)throwsUnsupportedEncodingException</td>
+<td align="center">普通</td>
+<td align="center">编译转换处理</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例</strong>:实现字符串与字节数组的转换处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;helloworld&quot;</span> ; </span><br><span class="line"><span class="comment">// String 转 byte[] </span></span><br><span class="line"><span class="keyword">byte</span>[] data = str.getBytes() ; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123; </span><br><span class="line"> System.out.print(data[i]+<span class="string">&quot; &quot;</span>); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// byte[] 转 String </span></span><br><span class="line">System.out.println(<span class="keyword">new</span> String(data));</span><br></pre></td></tr></table></figure>
+
+<p>那么何时使用 byte[], 何时使用 char[] 呢?</p>
+<ol>
+<li>byte[] 是把 String 按照一个字节一个字节的方式处理, 这种适合在网络传输, 数据存储这样的场景下使用. 更适合</li>
+</ol>
+<p>针对二进制数据来操作.</p>
+<ol start="2">
+<li>char[] 是吧 String 按照一个字符一个字符的方式处理, 更适合针对文本数据来操作, 尤其是包含中文的时候.</li>
+</ol>
+<blockquote>
+<p>回忆概念: 文本数据 vs 二进制数据</p>
+<p>一个简单粗暴的区分方式就是用记事本打开能不能看懂里面的内容.</p>
+<p>如果看的懂, 就是文本数据(例如 .java 文件), 如果看不懂, 就是二进制数据(例如.class文件)</p>
+</blockquote>
+<h1 id="字符串常见操作"><a href="#字符串常见操作" class="headerlink" title="字符串常见操作"></a>字符串常见操作</h1><p>上面使用过String类提供的equals()方法，该方法本身是可以进行区分大小写的相等判断。除了这个方法之外，String</p>
+<p>类还提供有如下的比较操作：</p>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public boolean equals(Object anObject)</td>
+<td align="center">普通</td>
+<td align="center">区分大小写的比较</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public boolean equalsIanore(Object anObject)</td>
+<td align="center">普通</td>
+<td align="center">不区分大小写的比较</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">public int conpareTo(String anotherString)</td>
+<td align="center">普通</td>
+<td align="center">比较两个字符串大小关系</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例</strong><strong>:</strong> 不区分大小写比较</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;hello&quot;</span> ; </span><br><span class="line">String str2 = <span class="string">&quot;Hello&quot;</span> ; </span><br><span class="line">System.out.println(str1.equals(str2)); <span class="comment">// false </span></span><br><span class="line">System.out.println(str1.equalsIgnoreCase(str2)); <span class="comment">// true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在String类中compareTo()方法是一个非常重要的方法，该方法返回一个整型，该数据会根据大小关系返回三类内</p>
+<p>容：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 相等：返回<span class="number">0.</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 小于：返回内容小于<span class="number">0.</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 大于：返回内容大于<span class="number">0</span>。</span><br></pre></td></tr></table></figure>
+
+<p><strong>范例：观察compareTo()比较</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;A&quot;</span>.compareTo(<span class="string">&quot;a&quot;</span>)); <span class="comment">// -32 </span></span><br><span class="line">System.out.println(<span class="string">&quot;a&quot;</span>.compareTo(<span class="string">&quot;A&quot;</span>)); <span class="comment">// 32 </span></span><br><span class="line">System.out.println(<span class="string">&quot;A&quot;</span>.compareTo(<span class="string">&quot;A&quot;</span>)); <span class="comment">// 0 </span></span><br><span class="line">System.out.println(<span class="string">&quot;AB&quot;</span>.compareTo(<span class="string">&quot;AC&quot;</span>)); <span class="comment">// -1 </span></span><br><span class="line">System.out.println(<span class="string">&quot;刘&quot;</span>.compareTo(<span class="string">&quot;杨&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>compareTo()是一个可以区分大小关系的方法，是String方法里是一个非常重要的方法。</p>
+<blockquote>
+<p>字符串的比较大小规则, 总结成三个字 “字典序” 相当于判定两个字符串在一本词典的前面还是后面. 先比较第一</p>
+<p>个字符的大小(根据 unicode 的值来判定), 如果不分胜负, 就依次比较后面的内容</p>
+</blockquote>
+<h2 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h2><p>从一个完整的字符串之中可以判断指定内容是否存在，对于查找方法有如下定义:</p>
+<table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public boolean contains(CharSequence s)</td>
+<td align="center">普通</td>
+<td align="center">判断一个子字符串是否存在</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public int indexOf(String str)</td>
+<td align="center">普通</td>
+<td align="center">从头开始查找指定字符串的位置，查到了就返回位置的开始索引，如果查不到就返回-1</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">public int indexOf(String str,int fromIndex)</td>
+<td align="center">普通</td>
+<td align="center">从指定位置开始查找子字符串的位置</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">public int LastindexOf(String str)</td>
+<td align="center">普通</td>
+<td align="center">由后向前查找子字符串的位置</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">public int LastindexOf(String str,int fromIndex)</td>
+<td align="center">普通</td>
+<td align="center">从指定位置由后向前查找</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">public boolean startsWith(String prefix)</td>
+<td align="center">普通</td>
+<td align="center">判断是否以指定字符串开头</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">public boolean startsWith(String prefix,int toffset)</td>
+<td align="center">普通</td>
+<td align="center">从指定位置开始判断是否以指定字符串开头</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">public boolean endsWith(String suffit)</td>
+<td align="center">普通</td>
+<td align="center">判断是否以指定字符串结尾</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例</strong><strong>:</strong> 字符串查找，最好用最方便的就是contains()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;helloworld&quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.contains(<span class="string">&quot;world&quot;</span>)); <span class="comment">// true </span></span><br></pre></td></tr></table></figure>
+
+<p>该判断形式是从JDK1.5之后开始追加的，在JDK1.5以前要想实现与之类似的功能，就必须借助、indexOf()方法完</p>
+<p>成。</p>
+<p><strong>代码示例:</strong> 使用indexOf()方法进行位置查找</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;helloworld&quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.indexOf(<span class="string">&quot;world&quot;</span>)); <span class="comment">// 5,w开始的索引</span></span><br><span class="line"></span><br><span class="line">System.out.println(str.indexOf(<span class="string">&quot;bit&quot;</span>)); <span class="comment">// -1，没有查到</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (str.indexOf(<span class="string">&quot;hello&quot;</span>) != -<span class="number">1</span>) &#123; </span><br><span class="line"></span><br><span class="line"> System.out.println(<span class="string">&quot;可以查到指定字符串！&quot;</span>); </span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>现在基本都是用contains()方法完成。</p>
+<p>使用indexOf()需要注意的是，如果内容重复，它只能返回查找的第一个位置</p>
+<p><strong>代码示例:</strong> 使用indexOf()的注意点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;helloworld&quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.indexOf(<span class="string">&quot;l&quot;</span>)); <span class="comment">// 2 </span></span><br><span class="line"></span><br><span class="line">System.out.println(str.indexOf(<span class="string">&quot;l&quot;</span>,<span class="number">5</span>)); <span class="comment">// 8 </span></span><br><span class="line"></span><br><span class="line">System.out.println(str.lastIndexOf(<span class="string">&quot;l&quot;</span>)); <span class="comment">// 8 </span></span><br></pre></td></tr></table></figure>
+
+<p>在进行查找的时候往往会判断开头或结尾。</p>
+<p><strong>代码示例:</strong> 判断开头或结尾</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;**@@helloworld!!&quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.startsWith(<span class="string">&quot;**&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"></span><br><span class="line">System.out.println(str.startsWith(<span class="string">&quot;@@&quot;</span>,<span class="number">2</span>)); <span class="comment">// ture </span></span><br><span class="line"></span><br><span class="line">System.out.println(str.endsWith(<span class="string">&quot;!!&quot;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h2><p>使用一个指定的新的字符串替换掉已有的字符串数据，可用的方法如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public String replaceAll(String regex,Stringreplacement)</td>
+<td align="center">普通</td>
+<td align="center">替换所有的指定位置</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public String replaceFirst(String regex,Stringreplacement)</td>
+<td align="center">普通</td>
+<td align="center">替换首个位置</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例:</strong> 字符串的替换处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;helloworld&quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.replaceAll(<span class="string">&quot;l&quot;</span>, <span class="string">&quot;_&quot;</span>)); </span><br><span class="line"></span><br><span class="line">System.out.println(str.replaceFirst(<span class="string">&quot;l&quot;</span>, <span class="string">&quot;_&quot;</span>)); </span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项:</strong> 由于字符串是不可变对象, 替换不修改当前字符串, 而是产生一个新的字符串.</p>
+<h2 id="字符串拆分"><a href="#字符串拆分" class="headerlink" title="字符串拆分"></a>字符串拆分</h2><table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public String[] split(String regex)</td>
+<td align="center">普通</td>
+<td align="center">将字符串全部拆分</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public String[] split(String regex，int limit)</td>
+<td align="center">普通</td>
+<td align="center">将字符串部分拆分，该数组长度是limit的极限</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例:</strong> 实现字符串的拆分处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;hello world hello bit&quot;</span> ; </span><br><span class="line"></span><br><span class="line">String[] result = str.split(<span class="string">&quot; &quot;</span>) ; <span class="comment">// 按照空格拆分</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String s: result) &#123; </span><br><span class="line"></span><br><span class="line"> System.out.println(s); </span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>代码示例:</strong> 字符串的部分拆分</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;hello world hello bit&quot;</span> ; </span><br><span class="line"></span><br><span class="line">String[] result = str.split(<span class="string">&quot; &quot;</span>,<span class="number">2</span>) ; </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String s: result) &#123; </span><br><span class="line"></span><br><span class="line"> System.out.println(s); </span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>拆分是特别常用的操作. 一定要重点掌握. 另外有些特殊字符作为分割符可能无法正确切分, 需要加上转义.</p>
+<p><strong>代码示例:</strong> 拆分IP地址</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;192.168.1.1&quot;</span> ; </span><br><span class="line"></span><br><span class="line">String[] result = str.split(<span class="string">&quot;\\.&quot;</span>) ; </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String s: result) &#123; </span><br><span class="line"></span><br><span class="line"> System.out.println(s); </span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>注意事项</strong>:</p>
+<ol>
+<li><p>字符”|”,”*”,”+”都得加上转义字符，前面加上”&quot;.</p>
+</li>
+<li><p>而如果是””，那么就得写成”\“.</p>
+</li>
+<li><p>如果一个字符串中有多个分隔符，可以用”|”作为连字符.</p>
+</li>
+</ol>
+<p><strong>代码示例:</strong> 多次拆分</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;name=zhangsan&amp;age=18&quot;</span> ; </span><br><span class="line">String[] result = str.split(<span class="string">&quot;&amp;&quot;</span>) ; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123; </span><br><span class="line"> String[] temp = result[i].split(<span class="string">&quot;=&quot;</span>) ; </span><br><span class="line"> System.out.println(temp[<span class="number">0</span>]+<span class="string">&quot; = &quot;</span>+temp[<span class="number">1</span>]); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>这种代码在以后的开发之中会经常出现</p>
+<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><p>从一个完整的字符串之中截取出部分内容。可用方法如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public String substring(int biginIndex)</td>
+<td align="center">普通</td>
+<td align="center">从指定索引截取到结尾</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public String substring(int biginIndex,int endIndex)</td>
+<td align="center">普通</td>
+<td align="center">截取部分内容</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例</strong><strong>:</strong> 观察字符串截取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot;helloworld&quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.substring(<span class="number">5</span>)); </span><br><span class="line"></span><br><span class="line">System.out.println(str.substring(<span class="number">0</span>, <span class="number">5</span>)); </span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项</strong><strong>:</strong></p>
+<ol>
+<li><p>索引从0开始</p>
+</li>
+<li><p>注意前闭后开区间的写法, substring(0, 5) 表示包含 0 号下标的字符, 不包含 5 号下标</p>
+</li>
+</ol>
+<h2 id="其他操作方法"><a href="#其他操作方法" class="headerlink" title="其他操作方法"></a>其他操作方法</h2><table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">public String trim( )</td>
+<td align="center">普通</td>
+<td align="center">去除字符串中的左右空格，保留中间的空格</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">public String toUpperCase( )</td>
+<td align="center">普通</td>
+<td align="center">字符串大写</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">public String toLowerCase( )</td>
+<td align="center">普通</td>
+<td align="center">字符串小写</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">public native String intern( )</td>
+<td align="center">普通</td>
+<td align="center">字符串入池操作</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">public String concat(String str )</td>
+<td align="center">普通</td>
+<td align="center">字符串连接，等同于“ + ”，不入池</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">public int length( )</td>
+<td align="center">普通</td>
+<td align="center">取得字符串长度</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">public boolean isEmpty( )</td>
+<td align="center">普通</td>
+<td align="center">判断是否为空字符串，但不是null，而是长度0</td>
+</tr>
+</tbody></table>
+<p><strong>代码示例:</strong> 观察trim()方法的使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = &quot; hello world &quot; ; </span><br><span class="line"></span><br><span class="line">System.out.println(&quot;[&quot;+str+&quot;]&quot;); </span><br><span class="line"></span><br><span class="line">System.out.println(&quot;[&quot;+str.trim()+&quot;]&quot;); </span><br></pre></td></tr></table></figure>
+
+<p>trim 会去掉字符串开头和结尾的空白字符(空格, 换行, 制表符等).</p>
+<p><strong>代码示例:</strong> 大小写转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot; hello%$$%@#$%world 哈哈哈 &quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.toUpperCase()); </span><br><span class="line"></span><br><span class="line">System.out.println(str.toLowerCase()); </span><br></pre></td></tr></table></figure>
+
+<p>这两个函数只转换字母。</p>
+<p><strong>代码示例</strong><strong>:</strong> 字符串length()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">&quot; hello%$$%@#$%world 哈哈哈 &quot;</span> ; </span><br><span class="line"></span><br><span class="line">System.out.println(str.length()); </span><br></pre></td></tr></table></figure>
+
+<p>注意：数组长度使用数组名称.length属性，而String中使用的是length()方法</p>
+<p><strong>代码示例:</strong> 观察isEmpty()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;hello&quot;</span>.isEmpty()); </span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;&quot;</span>.isEmpty()); </span><br><span class="line"></span><br><span class="line">System.out.println(<span class="keyword">new</span> String().isEmpty());</span><br></pre></td></tr></table></figure>
+
+<p>String类并没有提供首字母大写操作，需要自己实现.</p>
+<p><strong>代码示例:</strong> 首字母大写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line"> System.out.println(fistUpper(<span class="string">&quot;yuisama&quot;</span>)); </span><br><span class="line"> System.out.println(fistUpper(<span class="string">&quot;&quot;</span>)); </span><br><span class="line"> System.out.println(fistUpper(<span class="string">&quot;a&quot;</span>)); </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">fistUpper</span><span class="params">(String str)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;&quot;</span>.equals(str)||str==<span class="keyword">null</span>) &#123; </span><br><span class="line"> 		<span class="keyword">return</span> str ; </span><br><span class="line"> 	&#125; </span><br><span class="line"> 	<span class="keyword">if</span> (str.length()&gt;<span class="number">1</span>) &#123; </span><br><span class="line"> 		<span class="keyword">return</span> str.substring(<span class="number">0</span>, <span class="number">1</span>).toUpperCase()+str.substring(<span class="number">1</span>) ; </span><br><span class="line"> 	&#125; </span><br><span class="line"> 	<span class="keyword">return</span> str.toUpperCase() ; </span><br><span class="line"> &#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h1 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h1><p>首先来回顾下String类的特点：</p>
+<p>任何的字符串常量都是String对象，而且String的常量一旦声明不可改变，如果改变对象内容，改变的是其引用的指</p>
+<p>向而已。</p>
+<p>通常来讲String的操作比较简单，但是由于String的不可更改特性，为了方便字符串的修改，提供StringBuffffer和</p>
+<p>StringBuilder类。</p>
+<p>StringBuffffer 和 StringBuilder 大部分功能是相同的，我们课件上主要介绍 StringBuffffer</p>
+<p>在String中使用”+”来进行字符串连接，但是这个操作在StringBuffffer类中需要更改为append()方法：</p>
+<p>public synchronized StringBuffer append(各种数据类型 b) </p>
+<p><strong>范例：观察StringBuffffer使用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer(); </span><br><span class="line">	sb.append(<span class="string">&quot;Hello&quot;</span>).append(<span class="string">&quot;World&quot;</span>); </span><br><span class="line"> 	fun(sb); </span><br><span class="line">	System.out.println(sb); </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(StringBuffer temp)</span> </span>&#123; </span><br><span class="line"> 	temp.append(<span class="string">&quot;\n&quot;</span>).append(<span class="string">&quot;hhh&quot;</span>); </span><br><span class="line"> &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>String和StringBuffffer最大的区别在于：String的内容无法修改，而StringBuffffer的内容可以修改。频繁修改字符串的</p>
+<p>情况考虑使用StingBuffffer。</p>
+<p>为了更好理解String和StringBuffffer，我们来看这两个类的继承结构:</p>
+<table>
+<thead>
+<tr>
+<th align="center">String类</th>
+<th align="center">StringBuffer类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public fifinal class String implements</td>
+<td align="center">public fifinal class StringBuffffer extends</td>
+</tr>
+</tbody></table>
+<p>可以发现两个类都是”CharSequence”接口的子类。这个接口描述的是一系列的字符集。所以字符串是字符集的子</p>
+<p>类，如果以后看见CharSequence，最简单的联想就是字符串。</p>
+<p>注意：String和StringBuffffer类不能直接转换。如果要想互相转换，可以采用如下原则:</p>
+<p>String变为StringBuffffer:利用StringBuffffer的构造方法或append()方法</p>
+<p>StringBuffffer变为String:调用toString()方法。</p>
+<p>除了append()方法外，StringBuffffer也有一些String类没有的方法:</p>
+<p>字符串反转：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> StringBuffer <span class="title">reverse</span><span class="params">()</span> </span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>代码示例:</strong> 字符串反转</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;helloworld&quot;</span>); </span><br><span class="line"></span><br><span class="line">System.out.println(sb.reverse()); </span><br></pre></td></tr></table></figure>
+
+
+
+<p>删除指定范围的数据:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> StringBuffer <span class="title">delete</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>代码示例:</strong> 观察删除操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;helloworld&quot;</span>); </span><br><span class="line"></span><br><span class="line">System.out.println(sb.delete(<span class="number">5</span>, <span class="number">10</span>)); </span><br></pre></td></tr></table></figure>
+
+
+
+<p>插入数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public synchronized StringBuffer insert(int offset, 各种数据类型 b) </span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>代码示例:</strong> 观察插入操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;helloworld&quot;</span>); </span><br><span class="line"></span><br><span class="line">System.out.println(sb.delete(<span class="number">5</span>, <span class="number">10</span>).insert(<span class="number">0</span>, <span class="string">&quot;你好&quot;</span>)); </span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>面试题：请解释****String、StringBuffffer、StringBuilder的区别:</strong></p>
+<blockquote>
+<p>String的内容不可修改，StringBuffffer与StringBuilder的内容可以修改.</p>
+<p>StringBuffffer与StringBuilder大部分功能是相似的</p>
+<p>StringBuffffer采用同步处理，属于线程安全操作；而StringBuilder未采用同步处理，属于线程不安全操作</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">余音</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/12/04/String%E7%B1%BB%E7%9A%84%E8%AE%A4%E8%AF%86/">http://example.com/2021/12/04/String%E7%B1%BB%E7%9A%84%E8%AE%A4%E8%AF%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">余音的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042090.jfif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042119.jfif" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">面向对象编程</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/07/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042119.jfif" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">异常处理</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111251736783.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">余音</div><div class="author-info__description">余音的博客，欢迎访问</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/fishyin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:785811203@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAString%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">创建String类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E7%9B%B8%E7%AD%89"><span class="toc-number">2.</span> <span class="toc-text">字符串比较相等</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="toc-number">3.</span> <span class="toc-text">字符串常量池</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%8D%E5%8F%AF%E5%8F%98"><span class="toc-number">4.</span> <span class="toc-text">理解字符串的不可变</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E3%80%81%E5%AD%97%E8%8A%82%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.</span> <span class="toc-text">字符、字节与字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.1.</span> <span class="toc-text">字符和字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.2.</span> <span class="toc-text">字节和字符串</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">字符串常见操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="toc-number">6.1.</span> <span class="toc-text">字符串比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9F%A5%E6%89%BE"><span class="toc-number">6.2.</span> <span class="toc-text">字符串查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9B%BF%E6%8D%A2"><span class="toc-number">6.3.</span> <span class="toc-text">字符串替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%86%E5%88%86"><span class="toc-number">6.4.</span> <span class="toc-text">字符串拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E5%8F%96"><span class="toc-number">6.5.</span> <span class="toc-text">字符串截取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="toc-number">6.6.</span> <span class="toc-text">其他操作方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#StringBuffer%E5%92%8CStringBuilder"><span class="toc-number">7.</span> <span class="toc-text">StringBuffer和StringBuilder</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/07/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="异常处理"><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042119.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="异常处理"/></a><div class="content"><a class="title" href="/2021/12/07/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="异常处理">异常处理</a><time datetime="2021-12-07T06:32:05.000Z" title="发表于 2021-12-07 14:32:05">2021-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/04/String%E7%B1%BB%E7%9A%84%E8%AE%A4%E8%AF%86/" title="String类的认识"><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042090.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="String类的认识"/></a><div class="content"><a class="title" href="/2021/12/04/String%E7%B1%BB%E7%9A%84%E8%AE%A4%E8%AF%86/" title="String类的认识">String类的认识</a><time datetime="2021-12-04T02:06:00.000Z" title="发表于 2021-12-04 10:06:00">2021-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" title="面向对象编程"><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042119.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面向对象编程"/></a><div class="content"><a class="title" href="/2021/12/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" title="面向对象编程">面向对象编程</a><time datetime="2021-12-03T12:56:27.000Z" title="发表于 2021-12-03 20:56:27">2021-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/01/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" title="类和对象"><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252042639.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="类和对象"/></a><div class="content"><a class="title" href="/2021/12/01/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" title="类和对象">类和对象</a><time datetime="2021-12-01T11:36:00.000Z" title="发表于 2021-12-01 19:36:00">2021-12-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84LeetCode/" title="数据结构LeetCode"><img src="https://cdn.jsdelivr.net/gh/fishyin/picodemo/img/202111252041482.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构LeetCode"/></a><div class="content"><a class="title" href="/2021/11/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84LeetCode/" title="数据结构LeetCode">数据结构LeetCode</a><time datetime="2021-11-30T14:18:02.000Z" title="发表于 2021-11-30 22:18:02">2021-11-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By 余音</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Thank you for visiting my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
